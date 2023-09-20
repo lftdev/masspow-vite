@@ -3,6 +3,7 @@ import { LOGO_ICON, MAIN_NAV_ICONS } from './components/SVGIcons'
 import NavigationMenu from './components/NavigationMenu'
 import CartButton from './components/CartButton'
 import ProductPreview from './components/ProductPreview'
+import './style.css'
 
 export default function App () {
   const NAV_ITEMS = [
@@ -27,12 +28,12 @@ export default function App () {
           <CartButton />
         </Stack>
       </Stack>
-      <Stack direction='row' component='main' justifyContent='center' alignItems='center' gap={5}>
+      <Stack direction='row' component='main' justifyContent='center' alignItems='center' gap={5} flexWrap='wrap'>
         {PRODUCTS.map(product => (
           <ProductPreview product={product} key={product.id} />
         ))}
       </Stack>
-      <Stack component='footer' gap={5} justifyContent='center' alignItems='center' style={{ gridRow: 3, paddingBottom: 10, backgroundColor: '#8d8fe9', borderTopRightRadius: '72px' }}>
+      <Stack component='footer' gap={5} justifyContent='center' alignItems='center' style={{ gridRow: 'last', paddingBottom: 10, backgroundColor: '#8d8fe9', borderTopRightRadius: '72px' }}>
         <Stack direction='row' gap={5} justifyContent='flex-start' alignItems='center'>
           {LOGO_ICON(96, 96)}
           <Typography variant='h6' sx={{ fontStyle: 'italic' }}>masspow</Typography>
