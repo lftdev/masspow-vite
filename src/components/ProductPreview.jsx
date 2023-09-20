@@ -8,6 +8,7 @@ export default function ProductPreview (props) {
   const { product } = props
 
   const [cartBtnDisabled, setCartBtnDisabled] = useState(true)
+  // eslint-disable-next-line no-unused-vars
   const [productQuantity, setProductQuantity] = useState(0)
 
   const PRODUCT_NAME =
