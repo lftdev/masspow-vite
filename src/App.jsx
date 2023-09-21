@@ -1,11 +1,13 @@
-import { Link, Stack, Typography } from '@mui/material'
+import './style.css'
+import { Link, Stack, Typography, useMediaQuery } from '@mui/material'
 import { LOGO_ICON, MAIN_NAV_ICONS } from './components/SVGIcons'
 import NavigationMenu from './components/NavigationMenu'
 import CartButton from './components/CartButton'
 import ProductPreview from './components/ProductPreview'
-import './style.css'
 
 export default function App () {
+  const lgScreen = useMediaQuery('(min-width:768px)')
+
   const NAV_ITEMS = [
     { name: 'Home', href: '/', icon: MAIN_NAV_ICONS.home },
     { name: 'Products', href: '/products', icon: MAIN_NAV_ICONS.products },
@@ -21,18 +23,20 @@ export default function App () {
 
   return (
     <>
-      <Stack component='header' direction='row' justifyContent='space-between' alignItems='center' sx={{ p: 2 }}>
+      <Stack component='header' direction='row' justifyContent='space-between' alignItems='center' sx={{ position: 'fixed', top: 0, width: '100%', p: 3 }}>
         {LOGO_ICON()}
         <Stack direction='row' component='span' alignItems='center'>
           <NavigationMenu navItems={NAV_ITEMS} />
           <CartButton />
         </Stack>
       </Stack>
-      <Stack direction='row' component='main' justifyContent='center' alignItems='center' gap={5} flexWrap='wrap'>
-        {PRODUCTS.map(product => (
-          <ProductPreview product={product} key={product.id} />
-        ))}
-      </Stack>
+      <div style={{ marginTop: lgScreen ? 160 : 100 }}>
+        <Stack direction='row' component='main' justifyContent='center' alignItems='center' gap={5} flexWrap='wrap'>
+          {PRODUCTS.map(product => (
+            <ProductPreview product={product} key={product.id}/>
+          ))}
+        </Stack>
+      </div>
       <Stack component='footer' gap={5} justifyContent='center' alignItems='center' style={{ gridRow: 'last', paddingBottom: 10, backgroundColor: '#8d8fe9', borderTopRightRadius: '72px' }}>
         <Stack direction='row' gap={5} justifyContent='flex-start' alignItems='center'>
           {LOGO_ICON(96, 96)}
