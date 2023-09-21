@@ -30,7 +30,7 @@ export default function ProductPreview (props) {
   }
 
   return (
-    <Card component='article' sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', width: 300 }}>
+    <Card component='article' sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', width: 380 }}>
       <CardMedia component='header' sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <img src={`${PRODUCTS_IMAGES_PATH}/${product.key_name}.png`} width={250} height={300} alt={`${product.name} thumbnail`} style={{ pointerEvents: 'none' }} loading='lazy' />
         <div>
