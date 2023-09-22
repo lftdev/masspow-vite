@@ -15,12 +15,12 @@ export default function App () {
     fetchProducts().then(res => setProducts(res))
   }, [])
 
-  const NAV_ITEMS = [
-    { name: 'Home', href: '/', icon: MAIN_NAV_ICONS.home },
-    { name: 'Products', href: '/products', icon: MAIN_NAV_ICONS.products },
-    { name: 'Blog', href: '/blog', icon: MAIN_NAV_ICONS.blog },
-    { name: 'About us', href: '/about', icon: MAIN_NAV_ICONS.info }
-  ]
+  const NAV_ITEMS = ['home', 'products', 'blog', 'about']
+    .map(name => ({
+      name,
+      href: name === 'home' ? '/' : `/${name}`,
+      icon: MAIN_NAV_ICONS[name]
+    }))
 
   return (
     <>

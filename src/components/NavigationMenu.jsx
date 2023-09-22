@@ -12,7 +12,7 @@ export default function NavigationMenu (props) {
         {item.icon}
       </ListItemIcon>
       <ListItemButton href={item.href}>
-        <ListItemText primary={item.name} />
+        <ListItemText primary={item.name.toUpperCase()} />
       </ListItemButton>
     </ListItem>
   ))
