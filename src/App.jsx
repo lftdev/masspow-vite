@@ -1,5 +1,4 @@
 import './style.css'
-import { useMediaQuery } from '@mui/material'
 import { Route, Routes } from 'react-router-dom'
 import { MAIN_NAV_ICONS } from './components/SVGIcons'
 import Layout from './components/Layout'
@@ -7,8 +6,6 @@ import HomePage from './pages/HomePage'
 import ProductsPage from './pages/ProductsPage'
 
 export default function App () {
-  const lgScreen = useMediaQuery('(min-width:768px)')
-
   const NAV_ITEMS = ['home', 'products', 'blog', 'about']
     .map(name => ({
       name,
@@ -22,13 +19,11 @@ export default function App () {
 
   return (
     <Layout navItems={NAV_ITEMS}>
-      <div style={{ marginTop: lgScreen ? 160 : 100 }}>
-        <Routes>
-          {NAV_ITEMS.map(item => (
-            <Route key={item.name} path={item.href} element={ROUTES_ELEMENTS[item.name]} />
-          ))}
-        </Routes>
-      </div>
+      <Routes>
+        {NAV_ITEMS.map(item => (
+          <Route key={item.name} path={item.href} element={ROUTES_ELEMENTS[item.name]} />
+        ))}
+      </Routes>
     </Layout>
   )
 }
