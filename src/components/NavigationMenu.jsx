@@ -1,6 +1,7 @@
-import { Drawer, IconButton, List, ListItem, ListItemButton, ListItemIcon, ListItemText, useMediaQuery } from '@mui/material'
+import { Drawer, IconButton, List, ListItem, ListItemButton, ListItemIcon, useMediaQuery } from '@mui/material'
 import { HEADER_ICONS } from './SVGIcons'
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 export default function NavigationMenu (props) {
   const { navItems } = props
@@ -11,8 +12,8 @@ export default function NavigationMenu (props) {
       <ListItemIcon sx={{ width: 24 }}>
         {item.icon}
       </ListItemIcon>
-      <ListItemButton href={item.href}>
-        <ListItemText primary={item.name} />
+      <ListItemButton to={item.href} component={Link}>
+        {item.name.toUpperCase()}
       </ListItemButton>
     </ListItem>
   ))
