@@ -25,7 +25,7 @@ export default function App () {
       <div style={{ marginTop: lgScreen ? 160 : 100 }}>
         <Routes>
           {NAV_ITEMS.map(item => (
-            <Route key={item.href} path={item.href} element={ROUTES_ELEMENTS[item.name]} />
+            <Route key={item.name} path={item.href} element={ROUTES_ELEMENTS[item.name]} />
           ))}
         </Routes>
       </div>
