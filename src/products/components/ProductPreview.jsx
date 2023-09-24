@@ -1,7 +1,7 @@
 import { Button, Card, CardActions, CardContent, CardMedia, Stack, TextField, Typography } from '@mui/material'
-import { PRODUCTS_IMAGES_PATH } from '../constants/paths'
-import { HEADER_ICONS } from './SVGIcons'
-import { PRODUCT_PREVIEW_COMPONENT_STRINGS } from '../constants/strings'
+import { PRODUCTS_IMAGES_PATH } from '../../constants/paths'
+import { HEADER_ICONS } from '../../components/SVGIcons'
+import { PRODUCT_PREVIEW_COMPONENT_STRINGS } from '../../constants/strings'
 import { useState } from 'react'
 
 export default function ProductPreview (props) {

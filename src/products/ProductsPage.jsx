@@ -1,7 +1,7 @@
 import { CircularProgress, Stack } from '@mui/material'
 import { useEffect, useState } from 'react'
 import fetchProducts from '../get-products'
-import ProductPreview from '../components/ProductPreview'
+import ProductPreview from './components/ProductPreview'
 
 export default function ProductsPage () {
   const [products, setProducts] = useState([])

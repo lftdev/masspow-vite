@@ -2,8 +2,8 @@ import './style.css'
 import { Route, Routes } from 'react-router-dom'
 import { MAIN_NAV_ICONS } from './components/SVGIcons'
 import Layout from './components/Layout'
-import HomePage from './pages/HomePage'
-import ProductsPage from './pages/ProductsPage'
+import HomePage from './home/HomePage'
+import ProductsPage from './products/ProductsPage'
 
 export default function App () {
   const NAV_ITEMS = ['home', 'products', 'blog', 'about']
