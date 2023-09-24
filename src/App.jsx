@@ -1,9 +1,8 @@
 import './style.css'
-import { Link, Stack, Typography, useMediaQuery } from '@mui/material'
-import { LOGO_ICON, MAIN_NAV_ICONS } from './components/SVGIcons'
-import NavigationMenu from './components/NavigationMenu'
-import CartButton from './components/CartButton'
+import { useMediaQuery } from '@mui/material'
 import { Route, Routes } from 'react-router-dom'
+import { MAIN_NAV_ICONS } from './components/SVGIcons'
+import Layout from './components/Layout'
 import HomePage from './pages/HomePage'
 import ProductsPage from './pages/ProductsPage'
 
@@ -16,38 +15,25 @@ export default function App () {
       href: name === 'home' ? '/' : `/${name}`,
       icon: MAIN_NAV_ICONS[name]
     }))
-
   const ROUTES_ELEMENTS = {
     home: <HomePage />,
     products: <ProductsPage />
   }
+  const ROUTES = NAV_ITEMS
+    .map(item => ({
+      href: item.href,
+      element: ROUTES_ELEMENTS[item.name]
+    }))
 
   return (
-    <>
-      <Stack component='header' direction='row' justifyContent='space-between' alignItems='center' sx={{ position: 'fixed', top: 0, width: '100%', p: 3 }}>
-        {LOGO_ICON()}
-        <Stack direction='row' component='span' alignItems='center'>
-          <NavigationMenu navItems={NAV_ITEMS} />
-          <CartButton />
-        </Stack>
-      </Stack>
+    <Layout navItems={NAV_ITEMS}>
       <div style={{ marginTop: lgScreen ? 160 : 100 }}>
         <Routes>
-          {NAV_ITEMS.map(item => (
-            <Route key={item.name} path={item.href} element={ROUTES_ELEMENTS[item.name]} />
+          {ROUTES.map(item => (
+            <Route key={item.href} path={item.href} element={item.element} />
           ))}
         </Routes>
       </div>
-      <Stack component='footer' gap={5} justifyContent='center' alignItems='center' style={{ gridRow: 'last', paddingBottom: 10, backgroundColor: '#8d8fe9', borderTopRightRadius: '72px' }}>
-        <Stack direction='row' gap={5} justifyContent='flex-start' alignItems='center'>
-          {LOGO_ICON(96, 96)}
-          <Typography variant='h6' sx={{ fontStyle: 'italic' }}>masspow</Typography>
-        </Stack>
-        <div>
-          <Typography variant='button'>Designed and developed by <Link href='https://github.com/lftdev' target='_blank' underline='none' rel='noopener'>lftdev</Link>
-          </Typography>
-        </div>
-      </Stack>
-    </>
+    </Layout>
   )
 }

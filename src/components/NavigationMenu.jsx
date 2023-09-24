@@ -12,8 +12,8 @@ export default function NavigationMenu (props) {
       <ListItemIcon sx={{ width: 24 }}>
         {item.icon}
       </ListItemIcon>
-      <ListItemButton>
-        <Link to={item.href}>{item.name.toUpperCase()}</Link>
+      <ListItemButton to={item.href} component={Link}>
+        {item.name.toUpperCase()}
       </ListItemButton>
     </ListItem>
   ))

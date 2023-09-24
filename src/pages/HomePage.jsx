@@ -1,5 +1,6 @@
 import { Button, Stack, Typography } from '@mui/material'
 import { HOME_PAGE_STRINGS } from '../constants/strings'
+import { Link } from 'react-router-dom'
 
 export default function HomePage () {
   return (
@@ -12,7 +13,7 @@ export default function HomePage () {
           </Stack>
           <Stack component='footer' direction='row' sx={{ maxWidth: 500 }} gap={2}>
             <Button variant='contained'>{HOME_PAGE_STRINGS.callToAction}</Button>
-            <Button href='/products' variant='outlined' color='secondary'>{HOME_PAGE_STRINGS.secondaryAction}</Button>
+            <Button to='/products' variant='outlined' color='secondary' component={Link}>{HOME_PAGE_STRINGS.secondaryAction}</Button>
           </Stack>
         </Stack>
       </section>
