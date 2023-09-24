@@ -19,18 +19,13 @@ export default function App () {
     home: <HomePage />,
     products: <ProductsPage />
   }
-  const ROUTES = NAV_ITEMS
-    .map(item => ({
-      href: item.href,
-      element: ROUTES_ELEMENTS[item.name]
-    }))
 
   return (
     <Layout navItems={NAV_ITEMS}>
       <div style={{ marginTop: lgScreen ? 160 : 100 }}>
         <Routes>
-          {ROUTES.map(item => (
-            <Route key={item.href} path={item.href} element={item.element} />
+          {NAV_ITEMS.map(item => (
+            <Route key={item.href} path={item.href} element={ROUTES_ELEMENTS[item.name]} />
           ))}
         </Routes>
       </div>
