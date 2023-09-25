@@ -1,8 +1,8 @@
 import { CircularProgress, Stack } from '@mui/material'
 import { useContext, useEffect, useState } from 'react'
 import { FilterContext } from '../contexts/filter-context'
-import fetchCategories from '../fetch-categories'
-import fetchProducts from '../fetch-products'
+import fetchCategories from '../fetching/fetch-categories'
+import fetchProducts from '../fetching/fetch-products'
 import ProductPreview from './components/ProductPreview'
 import ProductsFilter from './components/ProductsFilter'
 
