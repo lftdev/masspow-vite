@@ -1,11 +1,13 @@
 import { CircularProgress, Stack } from '@mui/material'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
+import { FilterContext } from '../contexts/filter-context'
 import fetchCategories from '../fetch-categories'
 import fetchProducts from '../fetch-products'
 import ProductPreview from './components/ProductPreview'
 import ProductsFilter from './components/ProductsFilter'
 
 export default function ProductsPage () {
+  const { filter } = useContext(FilterContext)
   const [products, setProducts] = useState([])
   const [categories, setCategories] = useState([])
 
@@ -20,15 +22,18 @@ export default function ProductsPage () {
       label: name.charAt(0).toUpperCase() + name.slice(1)
     }
   })
+  const FILTERED_PRODUCTS = filter.category === ''
+    ? products
+    : products.filter(product => product.category === filter.category)
 
   return (
     <Stack alignItems='center' gap={4} component='main'>
-      {products.length === 0
+      <ProductsFilter categories={CATEGORIES_LABELS} />
+      {FILTERED_PRODUCTS.length === 0
         ? <CircularProgress />
         : <>
-            <ProductsFilter categories={CATEGORIES_LABELS} />
             <Stack direction='row' justifyContent='center' alignItems='center' gap={5} flexWrap='wrap' sx={{ height: '100%' }}>
-              {products.map(product =>
+              {FILTERED_PRODUCTS.map(product =>
                 <ProductPreview product={product} key={product.id}/>
               )}
             </Stack>

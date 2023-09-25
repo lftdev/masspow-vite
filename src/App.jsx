@@ -4,6 +4,7 @@ import { MAIN_NAV_ICONS } from './components/SVGIcons'
 import Layout from './components/Layout'
 import HomePage from './home/HomePage'
 import ProductsPage from './products/ProductsPage'
+import { FilterProvider } from './contexts/filter-context'
 
 export default function App () {
   const NAV_ITEMS = ['home', 'products', 'blog', 'about']
@@ -14,7 +15,7 @@ export default function App () {
     }))
   const ROUTES_ELEMENTS = {
     home: <HomePage />,
-    products: <ProductsPage />
+    products: <FilterProvider><ProductsPage /></FilterProvider>
   }
 
   return (
