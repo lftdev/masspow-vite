@@ -35,7 +35,7 @@ export default function ProductsPage () {
       <Fab title='Set search filters' color='primary' sx={{ position: 'fixed', right: 30, bottom: 50 }} onClick={() => setFiltersModalOpen(!filtersModalOpen)}>
         {FILTER_ICON}
       </Fab>
-      {filtersModalOpen && <FiltersModal isOpen={filtersModalOpen} />}
+      <FiltersModal isOpen={filtersModalOpen} onClose={() => setFiltersModalOpen(false)} />
     </Stack>
   )
 }

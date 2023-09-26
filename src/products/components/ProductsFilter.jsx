@@ -1,4 +1,4 @@
-import { Checkbox, FormControlLabel } from '@mui/material'
+import { Checkbox, FormControlLabel, Stack, Typography } from '@mui/material'
 import { useContext, useEffect, useState } from 'react'
 import { FilterContext } from '../../contexts/filter-context'
 import fetchCategories from '../../fetching/fetch-categories'
@@ -24,13 +24,16 @@ export default function ProductsFilter () {
   }
 
   return (
-    <form onSubmit={event => event.preventDefault()}>
+    <Stack gap={2}>
+      <Typography variant='h5' color='secondary'>
+        Categories
+      </Typography>
       {categories.map(category => {
         const name = category.name
         return (
           <FormControlLabel key={name} control={<Checkbox value={name} onChange={handleCategoryChange} checked={filter.categories.has(name)} />} label={name.charAt(0).toUpperCase() + name.slice(1)} />
         )
       })}
-    </form>
+    </Stack>
   )
 }

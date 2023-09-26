@@ -1,17 +1,24 @@
-import { Typography } from '@mui/material'
+import { Button, Stack, Typography } from '@mui/material'
 import ModalBox from '../../components/ModalBox'
 import { FILTERS_MODAL_STRINGS } from '../../constants/strings'
-import ProductsFilter from './ProductsFilter'
+import CategoryFilter from './ProductsFilter'
 
-const FiltersModal = props => (
-  <ModalBox { ...props }>
-    <header>
-      <Typography variant='h4' color='primary'>
-        {FILTERS_MODAL_STRINGS.title}
-      </Typography>
-    </header>
-    <ProductsFilter />
-  </ModalBox>
-)
+export default function FiltersModal (props) {
+  const { isOpen, onClose } = props
 
-export default FiltersModal
+  return (
+    <ModalBox isOpen={isOpen} onClose={onClose}>
+      <header>
+        <Typography variant='h4' color='primary'>
+          {FILTERS_MODAL_STRINGS.title}
+        </Typography>
+      </header>
+      <form onSubmit={event => event.preventDefault()}>
+        <CategoryFilter />
+      </form>
+      <Stack component='footer'>
+        <Button onClick={onClose} variant='contained'>OK</Button>
+      </Stack>
+    </ModalBox>
+  )
+}
