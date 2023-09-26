@@ -16,9 +16,10 @@ export const PRODUCT_PREVIEW_COMPONENT_STRINGS = {
   addToCartBtn: 'Add to cart',
   qtyInputLabel: 'Quantity'
 }
-export const GENERAL_STRINGS = {
-  cartModal: {
-    title: 'Your shopping cart',
-    emptyCartMessage: 'You did not add items yet.'
-  }
+export const CART_MODAL_STRINGS = {
+  title: 'Your shopping cart',
+  emptyCartMessage: 'You did not add items yet.'
+}
+export const FILTERS_MODAL_STRINGS = {
+  title: 'Which products are you looking for?'
 }

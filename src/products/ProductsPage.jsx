@@ -1,44 +1,41 @@
-import { CircularProgress, Stack } from '@mui/material'
+import { CircularProgress, Fab, Stack } from '@mui/material'
 import { useContext, useEffect, useState } from 'react'
+import { FILTER_ICON } from '../components/SVGIcons'
 import { FilterContext } from '../contexts/filter-context'
-import fetchCategories from '../fetching/fetch-categories'
 import fetchProducts from '../fetching/fetch-products'
 import ProductPreview from './components/ProductPreview'
-import ProductsFilter from './components/ProductsFilter'
+import FiltersModal from './components/FiltersModal'
 
 export default function ProductsPage () {
   const { filter } = useContext(FilterContext)
   const [products, setProducts] = useState([])
-  const [categories, setCategories] = useState([])
+  const [filtersModalOpen, setFiltersModalOpen] = useState(false)
 
   useEffect(() => {
     fetchProducts().then(res => setProducts(res))
-    fetchCategories().then(res => setCategories(res))
   }, [])
 
-  const CATEGORIES_LABELS = categories.map(category => {
-    const name = category.name
-    return {
-      label: name.charAt(0).toUpperCase() + name.slice(1)
-    }
-  })
-  const FILTERED_PRODUCTS = filter.category === ''
-    ? products
-    : products.filter(product => product.category === filter.category)
+  const filteredProducts =
+    filter.categories.size === 0
+      ? products
+      : products.filter(product => filter.categories.has(product.category))
 
   return (
     <Stack alignItems='center' gap={4} component='main'>
-      <ProductsFilter categories={CATEGORIES_LABELS} />
-      {FILTERED_PRODUCTS.length === 0
+      {filteredProducts.length === 0
         ? <CircularProgress />
         : <>
             <Stack direction='row' justifyContent='center' alignItems='center' gap={5} flexWrap='wrap' sx={{ height: '100%' }}>
-              {FILTERED_PRODUCTS.map(product =>
+              {filteredProducts.map(product =>
                 <ProductPreview product={product} key={product.id}/>
               )}
             </Stack>
           </>
       }
+      <Fab title='Set search filters' color='primary' sx={{ position: 'fixed', right: 30, bottom: 50 }} onClick={() => setFiltersModalOpen(!filtersModalOpen)}>
+        {FILTER_ICON}
+      </Fab>
+      {filtersModalOpen && <FiltersModal isOpen={filtersModalOpen} />}
     </Stack>
   )
 }
