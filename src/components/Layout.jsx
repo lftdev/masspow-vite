@@ -1,11 +1,18 @@
 import { Link, Stack, Typography, useMediaQuery } from '@mui/material'
-import { LOGO_ICON } from './SVGIcons'
-import NavigationMenu from './NavigationMenu'
 import CartButton from './CartButton'
+import NavigationMenu from './NavigationMenu'
+import { LOGO_ICON, MAIN_NAV_ICONS } from './SVGIcons'
 
 export default function Layout (props) {
-  const { children, navItems } = props
+  const { children } = props
   const lgScreen = useMediaQuery('(min-width:768px)')
+
+  const navItems = ['home', 'products', 'blog', 'about']
+    .map(name => ({
+      name,
+      href: name === 'home' ? '/' : `/${name}`,
+      icon: MAIN_NAV_ICONS[name]
+    }))
 
   return (
     <>
