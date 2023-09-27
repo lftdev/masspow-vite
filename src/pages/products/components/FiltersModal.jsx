@@ -1,6 +1,6 @@
 import { Button, Stack, Typography } from '@mui/material'
-import ModalBox from '../../components/ModalBox'
-import { FILTERS_MODAL_STRINGS } from '../../constants/strings'
+import ModalBox from '../../../components/ModalBox'
+import { FILTERS_MODAL_STRINGS } from '../../../constants/strings'
 import CategoryFilter from './ProductsFilter'
 
 export default function FiltersModal (props) {

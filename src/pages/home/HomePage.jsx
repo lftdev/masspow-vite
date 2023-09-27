@@ -1,5 +1,5 @@
 import { Button, Stack, Typography } from '@mui/material'
-import { HOME_PAGE_STRINGS } from '../constants/strings'
+import { HOME_PAGE_STRINGS } from '../../constants/strings'
 import { Link } from 'react-router-dom'
 
 const HomePage = () => (

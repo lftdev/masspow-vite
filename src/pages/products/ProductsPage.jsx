@@ -1,8 +1,8 @@
 import { CircularProgress, Fab, Stack } from '@mui/material'
 import { useContext, useEffect, useState } from 'react'
-import { FILTER_ICON } from '../components/SVGIcons'
-import { FilterContext } from '../contexts/filter-context'
-import fetchProducts from '../services/fetch-products'
+import { FILTER_ICON } from '../../components/SVGIcons'
+import { FilterContext } from '../../contexts/filter-context'
+import fetchProducts from '../../services/fetch-products'
 import ProductPreview from './components/ProductPreview'
 import FiltersModal from './components/FiltersModal'
 
