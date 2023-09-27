@@ -1,7 +1,7 @@
 import { Checkbox, FormControlLabel, Stack, Typography } from '@mui/material'
 import { useContext, useEffect, useState } from 'react'
 import { FilterContext } from '../../contexts/filter-context'
-import fetchCategories from '../../fetching/fetch-categories'
+import fetchCategories from '../../services/fetch-categories'
 
 export default function ProductsFilter () {
   const [categories, setCategories] = useState([])

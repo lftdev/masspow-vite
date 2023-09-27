@@ -5,6 +5,7 @@ import Layout from './components/Layout'
 import HomePage from './home/HomePage'
 import ProductsPage from './products/ProductsPage'
 import { FilterProvider } from './contexts/filter-context'
+import PageNotFound from './components/PageNotFound'
 
 export default function App () {
   const NAV_ITEMS = ['home', 'products', 'blog', 'about']
@@ -13,16 +14,17 @@ export default function App () {
       href: name === 'home' ? '/' : `/${name}`,
       icon: MAIN_NAV_ICONS[name]
     }))
-  const ROUTES_ELEMENTS = {
-    home: <HomePage />,
-    products: <FilterProvider><ProductsPage /></FilterProvider>
-  }
+  const ROUTES = [
+    { name: 'home', element: <HomePage />, path: '/' },
+    { name: 'products', element: <FilterProvider><ProductsPage /></FilterProvider>, path: '/products' },
+    { name: '*', element: <PageNotFound />, path: '*' }
+  ]
 
   return (
     <Layout navItems={NAV_ITEMS}>
       <Routes>
-        {NAV_ITEMS.map(item => (
-          <Route key={item.name} path={item.href} element={ROUTES_ELEMENTS[item.name]} />
+        {ROUTES.map(route => (
+          <Route key={route.name} path={route.path} element={route.element} />
         ))}
       </Routes>
     </Layout>
