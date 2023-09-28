@@ -1,4 +1,4 @@
-import { Link, Stack, Typography, useMediaQuery } from '@mui/material'
+import { Divider, Link, Stack, Typography, useMediaQuery } from '@mui/material'
 import { Link as RLink } from 'react-router-dom'
 import { APP_NAME, LAYOUT_FOOTER_ATTRIBUTION } from '../constants/strings'
 import CartButton from './CartButton'
@@ -21,8 +21,9 @@ export default function Layout (props) {
       <Stack component='header' direction='row' justifyContent='space-between' alignItems='center' sx={{ position: 'fixed', top: 0, width: '100%', p: 3 }}>
         <RLink to='/' title={APP_NAME}>{LOGO_ICON()}</RLink>
         <Stack direction='row' component='span' alignItems='center'>
-          <NavigationMenu navItems={navItems} />
           <CartButton />
+          <Divider orientation='vertical' flexItem />
+          <NavigationMenu navItems={navItems} />
         </Stack>
       </Stack>
       <div style={{ marginTop: lgScreen ? 160 : 100 }}>
