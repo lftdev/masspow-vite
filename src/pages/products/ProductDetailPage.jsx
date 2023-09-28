@@ -13,9 +13,9 @@ export default function ProductDetailPage () {
   }, [])
 
   return (
-    <main style={{ display: 'grid' }}>
+    <Stack alignItems='center' component='main'>
       {product != null
-        ? <Stack gap={2} style={{ width: 300 }}>
+        ? <Stack alignItems='center' gap={2} style={{ width: 300 }}>
            <Paper alignItems='center' sx={{ width: 300 }} component={Stack}>
              <img src={`${PRODUCTS_IMAGES_PATH}/${product.key_name}.png`} alt='Product preview' width={250} height={300} style={{ pointerEvents: 'none' }} />
            </Paper>
@@ -28,9 +28,14 @@ export default function ProductDetailPage () {
                </Paper>
              ))}
            </Stack>
+            <Paper>
+             <Typography>
+               {product.description}
+             </Typography>
+            </Paper>
           </Stack>
         : <CircularProgress />
       }
-    </main>
+    </Stack>
   )
 }
