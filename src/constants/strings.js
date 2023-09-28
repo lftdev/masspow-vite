@@ -15,7 +15,8 @@ export const PRODUCT_PREVIEW_COMPONENT_STRINGS = {
   priceText: 'Price',
   stockText: 'Stock',
   addToCartBtn: 'Add to cart',
-  qtyInputLabel: 'Quantity'
+  qtyInputLabel: 'Quantity',
+  detailsBtn: 'View details'
 }
 export const CART_MODAL_STRINGS = {
   title: 'Your shopping cart',

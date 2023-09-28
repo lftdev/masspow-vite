@@ -3,6 +3,7 @@ import { PRODUCTS_IMAGES_PATH } from '../../../constants/paths'
 import { HEADER_ICONS } from '../../../components/SVGIcons'
 import { PRODUCT_PREVIEW_COMPONENT_STRINGS } from '../../../constants/strings'
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 export default function ProductPreview (props) {
   const { product } = props
@@ -44,13 +45,14 @@ export default function ProductPreview (props) {
           <Typography variant='h6' component='span'>{PRODUCT_PREVIEW_COMPONENT_STRINGS.stockText}: {product.stock}</Typography>
         </Stack>
       </CardContent>
-      <CardActions>
+      <CardActions sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
         <form style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 10 }} onSubmit={addToCart}>
           <Button type='submit' title={`${PRODUCT_PREVIEW_COMPONENT_STRINGS.addToCartBtn} ${product.name}`} disabled={cartBtnDisabled} startIcon={HEADER_ICONS.cart} variant='contained' sx={{ maxWidth: '50%' }}>
             {PRODUCT_PREVIEW_COMPONENT_STRINGS.addToCartBtn}
           </Button>
           <TextField type='number' required sx={{ maxWidth: '50%' }} onInput={handleQtyInput} label={PRODUCT_PREVIEW_COMPONENT_STRINGS.qtyInputLabel} placeholder='2' />
         </form>
+        <Button to={`/products/${product.id}`} color='secondary' component={Link}>{PRODUCT_PREVIEW_COMPONENT_STRINGS.detailsBtn}</Button>
       </CardActions>
     </Card>
   )

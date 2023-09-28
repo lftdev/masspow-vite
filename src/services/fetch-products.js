@@ -4,6 +4,13 @@ const PRODUCTS = [
   { id: 3, name: 'C4 Preworkout', variant: null, price: 10, brand: 'Cellucor', key_name: 'preworkout-c4-cellucor', stock: 20, category: 'preworkouts' }
 ]
 
-const fetchProducts = () => new Promise(resolve => setTimeout(() => resolve(PRODUCTS), 2000))
+export const fetchProducts = () => new Promise(resolve => setTimeout(() => resolve(PRODUCTS), 2000))
 
-export default fetchProducts
+export async function getProductById (id) {
+  try {
+    const products = await fetchProducts()
+    return products.find(product => product.id === id)
+  } catch (error) {
+    console.log('Error occurred while getting product by ID.', error)
+  }
+}
