@@ -8,14 +8,11 @@ import { Link } from 'react-router-dom'
 export default function ProductPreview (props) {
   const { product } = props
 
+  const productImageSrc = `${product.name.toLowerCase().replace(' ', '_')}-${product.brand.toLowerCase().replace(' ', '_')}`
+
   const [cartBtnDisabled, setCartBtnDisabled] = useState(true)
   // eslint-disable-next-line no-unused-vars
   const [productQuantity, setProductQuantity] = useState(0)
-
-  const PRODUCT_NAME =
-  product.variant != null
-    ? `${product.variant.charAt(0).toUpperCase() + product.variant.slice(1)} ${product.name}`
-    : product.name
 
   function handleQtyInput (event) {
     const stock = product.stock
@@ -33,9 +30,9 @@ export default function ProductPreview (props) {
   return (
     <Card component='article' sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', width: 380 }}>
       <CardMedia component='header' sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <img src={`${PRODUCTS_IMAGES_PATH}/${product.key_name}.png`} width={250} height={300} alt={`${product.name} thumbnail`} style={{ pointerEvents: 'none' }} loading='lazy' />
+        <img src={`${PRODUCTS_IMAGES_PATH}/${productImageSrc}.png`} width={250} height={300} alt={`${product.name} thumbnail`} style={{ pointerEvents: 'none' }} loading='lazy' />
         <div>
-          <Typography variant='h4'>{PRODUCT_NAME}</Typography>
+          <Typography variant='h4'>{product.name}</Typography>
           <Typography variant='h5'>{product.brand}</Typography>
         </div>
       </CardMedia>
