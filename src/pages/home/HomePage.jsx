@@ -2,8 +2,8 @@ import { Button, Stack, Typography } from '@mui/material'
 import { HOME_PAGE_STRINGS } from '../../constants/strings'
 import { Link } from 'react-router-dom'
 
-const HomePage = () => (
-  <section role='region' style={{ display: 'flex', flexDirection: 'column', gap: 20, justifyContent: 'center', padding: 4, width: '100%', height: '100vh', background: 'url(/images/bg-hero.jpg) center center no-repeat', borderBottomLeftRadius: 72 }}>
+const HomePage = () =>
+  <section role='region' style={{ display: 'flex', flexDirection: 'column', gap: 20, justifyContent: 'center', padding: 4, width: '100%', height: '100vh', background: 'url(/images/bg-hero.jpg) top center no-repeat', borderBottomLeftRadius: 72 }}>
     <Stack gap={10} sx={{ backgroundColor: 'rgba(0,0,0,.7)', borderBottomLeftRadius: 72, padding: 5 }}>
       <Stack component='header' gap={2}>
         <Typography variant='h2' component='h1'>{HOME_PAGE_STRINGS.mainTitle}</Typography>
@@ -15,5 +15,5 @@ const HomePage = () => (
       </Stack>
     </Stack>
   </section>
-)
+
 export default HomePage

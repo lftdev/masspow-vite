@@ -17,7 +17,7 @@ export default function ProductDetailPage () {
   }, [])
 
   return (
-    <Stack alignItems='center' component='main'>
+    <Stack alignItems='center' component='main' sx={{ marginTop: 15 }}>
       {product != null
         ? <Stack alignItems='center' gap={2} style={{ width: 300 }}>
            <Paper alignItems='center' sx={{ width: 300 }} component={Stack}>

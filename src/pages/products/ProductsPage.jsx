@@ -21,7 +21,7 @@ export default function ProductsPage () {
       : products.filter(product => filter.categories.has(product.category))
 
   return (
-    <Stack alignItems='center' gap={4} component='main'>
+    <Stack alignItems='center' gap={4} component='main' sx={{ marginTop: 15 }}>
       {filteredProducts.length === 0
         ? <CircularProgress />
         : <>

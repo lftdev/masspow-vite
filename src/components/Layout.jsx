@@ -18,7 +18,7 @@ export default function Layout (props) {
 
   return (
     <>
-      <Stack component='header' direction='row' justifyContent='space-between' alignItems='center' sx={{ position: 'fixed', top: 0, width: '100%', p: 3 }}>
+      <Stack component='header' direction='row' justifyContent='space-between' alignItems='center' sx={{ position: 'fixed', top: 0, width: '100%', p: 3, backgroundColor: 'rgba(0,0,0,.4)' }}>
         <RLink to='/' title={APP_NAME}>{LOGO_ICON()}</RLink>
         <Stack direction='row' component='span' alignItems='center'>
           {lgScreen
@@ -34,9 +34,7 @@ export default function Layout (props) {
               </>}
         </Stack>
       </Stack>
-      <div style={{ marginTop: lgScreen ? 160 : 100 }}>
-        {children}
-      </div>
+      {children}
       <Stack component='footer' gap={5} justifyContent='center' alignItems='center' style={{ gridRow: 'last', paddingBottom: 10, backgroundColor: '#8d8fe9', borderTopRightRadius: '72px' }}>
         <Stack direction='row' gap={5} justifyContent='flex-start' alignItems='center'>
           {LOGO_ICON(96, 96)}
