@@ -7,9 +7,13 @@ import { getProductById } from '../../services/fetch-products'
 export default function ProductDetailPage () {
   const { productId } = useParams()
   const [product, setProduct] = useState()
+  const [imgSrc, setImgSrc] = useState('')
 
   useEffect(() => {
-    getProductById(parseInt(productId)).then(response => setProduct(response))
+    getProductById(parseInt(productId)).then(response => {
+      setProduct(response)
+      setImgSrc(`${response.name.toLowerCase().replace(' ', '_')}-${response.brand.toLowerCase().replace(' ', '_')}`)
+    })
   }, [])
 
   return (
@@ -17,15 +21,15 @@ export default function ProductDetailPage () {
       {product != null
         ? <Stack alignItems='center' gap={2} style={{ width: 300 }}>
            <Paper alignItems='center' sx={{ width: 300 }} component={Stack}>
-             <img src={`${PRODUCTS_IMAGES_PATH}/${product.key_name}.png`} alt='Product preview' width={250} height={300} style={{ pointerEvents: 'none' }} />
+             <img src={`${PRODUCTS_IMAGES_PATH}/${imgSrc}.png`} alt='Product preview' width={250} height={300} style={{ pointerEvents: 'none' }} />
            </Paper>
            <Stack direction='row' justifyContent='space-between' gap={2}>
              {['name', 'brand'].map(key => (
-               <Paper key={key} justifyContent='center' alignItems='center' sx={{ p: 2 }} component='span'>
-                 <Typography variant='h4'>
-                   {product[key]}
-                 </Typography>
-               </Paper>
+              <Paper key={key} component='span'>
+                <Typography variant='h4'>
+                  {product[key]}
+                </Typography>
+              </Paper>
              ))}
            </Stack>
             <Paper>

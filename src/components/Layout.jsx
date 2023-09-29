@@ -21,9 +21,17 @@ export default function Layout (props) {
       <Stack component='header' direction='row' justifyContent='space-between' alignItems='center' sx={{ position: 'fixed', top: 0, width: '100%', p: 3 }}>
         <RLink to='/' title={APP_NAME}>{LOGO_ICON()}</RLink>
         <Stack direction='row' component='span' alignItems='center'>
-          <CartButton />
-          <Divider orientation='vertical' flexItem />
-          <NavigationMenu navItems={navItems} />
+          {lgScreen
+            ? <>
+                <NavigationMenu navItems={navItems} />
+                <Divider orientation='vertical' flexItem />
+                <CartButton />
+              </>
+            : <>
+                <CartButton />
+                <Divider orientation='vertical' flexItem />
+                <NavigationMenu navItems={navItems} />
+              </>}
         </Stack>
       </Stack>
       <div style={{ marginTop: lgScreen ? 160 : 100 }}>
