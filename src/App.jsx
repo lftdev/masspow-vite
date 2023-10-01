@@ -6,6 +6,7 @@ import HomePage from './pages/home/HomePage'
 import ProductDetailPage from './pages/products/ProductDetailPage'
 import ProductsPage from './pages/products/ProductsPage'
 import './style.css'
+import { CartProvider } from './contexts/cart-context'
 
 export default function App () {
   const routes = [
@@ -16,12 +17,14 @@ export default function App () {
   ]
 
   return (
-    <Layout>
-      <Routes>
-        {routes.map(route => (
-          <Route key={route.name} path={route.path} element={route.element} />
-        ))}
-      </Routes>
-    </Layout>
+    <CartProvider>
+      <Layout>
+        <Routes>
+          {routes.map(route => (
+            <Route key={route.name} path={route.path} element={route.element} />
+          ))}
+        </Routes>
+      </Layout>
+    </CartProvider>
   )
 }
