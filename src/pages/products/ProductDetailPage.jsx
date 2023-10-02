@@ -2,20 +2,18 @@ import { CircularProgress, Paper, Stack, Typography } from '@mui/material'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { PRODUCTS_IMAGES_PATH } from '../../constants/paths'
-import { getProductById } from '../../services/fetch-products'
 import getProductKeyName from '../../utils/get-product-key-name'
+import useProductFetchById from './hooks/use-product-fetch-by-id'
 
 export default function ProductDetailPage () {
   const { productId } = useParams()
-  const [product, setProduct] = useState()
   const [imgSrc, setImgSrc] = useState('')
 
+  const product = useProductFetchById(productId)
+
   useEffect(() => {
-    getProductById(parseInt(productId)).then(response => {
-      setProduct(response)
-      setImgSrc(getProductKeyName(response))
-    })
-  }, [])
+    if (product != null) setImgSrc(getProductKeyName(product))
+  }, [product])
 
   return (
     <Stack alignItems='center' component='main' sx={{ marginTop: 15 }}>
