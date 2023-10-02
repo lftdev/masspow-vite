@@ -1,19 +1,16 @@
 import { CircularProgress, Fab, Stack } from '@mui/material'
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useState } from 'react'
 import { FILTER_ICON } from '../../components/SVGIcons'
 import { FilterContext } from '../../contexts/filter-context'
-import { fetchProducts } from '../../services/fetch-products'
-import ProductPreview from './components/ProductPreview'
 import FiltersModal from './components/FiltersModal'
+import ProductPreview from './components/ProductPreview'
+import useProductsFetch from './hooks/use-products-fetch'
 
 export default function ProductsPage () {
   const { filter } = useContext(FilterContext)
-  const [products, setProducts] = useState([])
   const [filtersModalOpen, setFiltersModalOpen] = useState(false)
 
-  useEffect(() => {
-    fetchProducts().then(res => setProducts(res))
-  }, [])
+  const products = useProductsFetch()
 
   const filteredProducts =
     filter.categories.size === 0
