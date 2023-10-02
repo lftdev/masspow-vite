@@ -17,10 +17,9 @@ export default function ProductPreview (props) {
   const [productQuantity, setProductQuantity] = useState(0)
 
   function handleQtyInput (event) {
-    const stock = product.stock
     const value = event.target.value
     const amount = value === '' ? 0 : parseInt(value)
-    const isInvalid = amount <= 0 || amount > stock
+    const isInvalid = amount <= 0 || amount > product.stock
     if (!isInvalid) setProductQuantity(amount)
     setCartBtnDisabled(isInvalid)
   }
