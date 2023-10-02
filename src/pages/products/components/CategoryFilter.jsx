@@ -1,15 +1,11 @@
 import { Checkbox, CircularProgress, FormControlLabel, Stack, Typography } from '@mui/material'
-import { useContext, useEffect, useState } from 'react'
+import { useContext } from 'react'
 import { FilterContext } from '../../../contexts/filter-context'
-import fetchCategories from '../../../services/fetch-categories'
+import useCategoriesFetch from '../hooks/use-categories-fetch'
 
 export default function CategoryFilter () {
-  const [categories, setCategories] = useState([])
   const { filter, setFilter } = useContext(FilterContext)
-
-  useEffect(() => {
-    fetchCategories().then(response => setCategories(response))
-  }, [])
+  const categories = useCategoriesFetch()
 
   function handleCategoryChange (event) {
     const target = event.target
