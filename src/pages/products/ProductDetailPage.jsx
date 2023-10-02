@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { PRODUCTS_IMAGES_PATH } from '../../constants/paths'
 import { getProductById } from '../../services/fetch-products'
+import getProductKeyName from '../../utils/get-product-key-name'
 
 export default function ProductDetailPage () {
   const { productId } = useParams()
@@ -12,7 +13,7 @@ export default function ProductDetailPage () {
   useEffect(() => {
     getProductById(parseInt(productId)).then(response => {
       setProduct(response)
-      setImgSrc(`${response.name.toLowerCase().replace(' ', '_')}-${response.brand.toLowerCase().replace(' ', '_')}`)
+      setImgSrc(getProductKeyName(response))
     })
   }, [])
 
