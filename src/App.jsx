@@ -1,12 +1,12 @@
 import { Route, Routes } from 'react-router-dom'
 import Layout from './components/Layout'
 import PageNotFound from './components/PageNotFound'
+import { CartProvider } from './contexts/cart-context'
 import { FilterProvider } from './contexts/filter-context'
 import HomePage from './pages/home/HomePage'
 import ProductDetailPage from './pages/products/ProductDetailPage'
 import ProductsPage from './pages/products/ProductsPage'
 import './style.css'
-import { CartProvider } from './contexts/cart-context'
 
 export default function App () {
   const routes = [
