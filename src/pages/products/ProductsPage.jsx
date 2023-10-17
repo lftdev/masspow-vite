@@ -10,12 +10,12 @@ export default function ProductsPage () {
   const { filter } = useContext(FilterContext)
   const [filtersModalOpen, setFiltersModalOpen] = useState(false)
 
-  const products = useProductsFetch()
+  const { productsList } = useProductsFetch()
 
   const filteredProducts =
     filter.categories.size === 0
-      ? products
-      : products.filter(product => filter.categories.has(product.category))
+      ? productsList
+      : productsList.filter(product => filter.categories.has(product.category))
 
   return (
     <Stack alignItems='center' gap={4} component='main' sx={{ marginTop: 15 }}>

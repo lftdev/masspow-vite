@@ -1,11 +1,29 @@
+import { collection, getDocs, getFirestore } from 'firebase/firestore'
 import { useEffect, useState } from 'react'
-import { fetchProducts } from '../../../services/fetch-products'
 
-export default function useProductsFetch () {
-  const [products, setProducts] = useState([])
+export default function useProductsFetch (id) {
+  const [productById, setProductById] = useState()
+  const [productsList, setProductsList] = useState([])
+
   useEffect(() => {
-    fetchProducts().then(res => setProducts(res))
+    async function getProducts () {
+      try {
+        const query = await getDocs(collection(getFirestore(), 'Products'))
+        const list = []
+        query.forEach(doc => list.push(doc.data()))
+
+        if (id != null) setProductById(list.find(item => item.id === id))
+        setProductsList(list)
+      } catch (error) {
+        console.error('Error occurred on products fetch.', error)
+      }
+    }
+
+    getProducts()
   }, [])
 
-  return products
+  return {
+    productById,
+    productsList
+  }
 }
