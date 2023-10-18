@@ -6,7 +6,7 @@ export default function useProductsFetch (id) {
   const [productsList, setProductsList] = useState([])
 
   useEffect(() => {
-    async function getProducts () {
+    async function fetchProducts () {
       try {
         const query = await getDocs(collection(getFirestore(), 'Products'))
         const list = []
@@ -19,7 +19,7 @@ export default function useProductsFetch (id) {
       }
     }
 
-    getProducts()
+    fetchProducts()
   }, [])
 
   return {
