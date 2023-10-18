@@ -27,8 +27,10 @@ export const CART_MODAL_STRINGS = {
     quantity: 'Quantity',
     price: 'Price',
     totalPrice: 'Subtotal',
-    thumbnail: 'Thumbnail'
-  }
+    image: 'Image'
+  },
+  buyBtn: 'Finish buying',
+  closeBtn: 'Close'
 }
 export const FILTERS_MODAL_STRINGS = {
   title: 'Which products are you looking for?'
