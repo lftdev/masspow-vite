@@ -20,7 +20,15 @@ export const PRODUCT_PREVIEW_COMPONENT_STRINGS = {
 }
 export const CART_MODAL_STRINGS = {
   title: 'Your shopping cart',
-  emptyCartMessage: 'You did not add items yet.'
+  emptyCartMessage: 'You did not add items yet.',
+  tableHeaders: {
+    name: 'Name',
+    brand: 'Brand',
+    quantity: 'Quantity',
+    price: 'Price',
+    totalPrice: 'Subtotal',
+    thumbnail: 'Thumbnail'
+  }
 }
 export const FILTERS_MODAL_STRINGS = {
   title: 'Which products are you looking for?'

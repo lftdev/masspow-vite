@@ -22,7 +22,7 @@ export default function AddToCartForm (props) {
 
   function addToCart (event) {
     event.preventDefault()
-    setCart(prev => [...prev, { ...product, quantity: productQuantity }])
+    setCart(prev => [...prev, { ...product, quantity: productQuantity, totalPrice: product.price * productQuantity }])
     setCartBtnDisabled(true)
     setProductAdded(true)
   }
