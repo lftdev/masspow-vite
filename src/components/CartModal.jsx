@@ -14,21 +14,20 @@ export default function CartModal (props) {
 
   const cartIsEmpty = cart.length === 0
 
-  const createGridColumns = () =>
-    ['image', 'name', 'brand', 'price', 'quantity', 'totalPrice']
-      .map(field => (
-        {
-          field,
-          headerName: CART_MODAL_STRINGS.tableHeaders[field],
-          renderCell:
-          field === 'image'
-            ? params =>
-              <img width={48} height={48}
-                alt={params.row.name} loading='lazy'
-                src={`${PRODUCTS_IMAGES_PATH}/${getProductKeyName({ name: params.row.name, brand: params.row.brand })}.png`}/>
-            : undefined
-        })
-      )
+  const createGridColumns = columns =>
+    columns.map(field =>
+      ({
+        field,
+        headerName: CART_MODAL_STRINGS.tableHeaders[field],
+        renderCell:
+        field === 'image'
+          ? params =>
+            <img width={48} height={48}
+              alt={params.row.name} loading='lazy'
+              src={`${PRODUCTS_IMAGES_PATH}/${getProductKeyName({ name: params.row.name, brand: params.row.brand })}.png`}/>
+          : undefined
+      })
+    )
 
   return (
     <ModalBox isOpen={isOpen} onClose={onClose}>
@@ -40,7 +39,9 @@ export default function CartModal (props) {
       {cartIsEmpty
         ? <Typography variant='body1'>{CART_MODAL_STRINGS.emptyCartMessage}</Typography>
         : <>
-            <DataGrid rows={cart} columns={createGridColumns()} checkboxSelection sx={{ overflow: 'scroll' }} />
+            <DataGrid
+              columns={createGridColumns(['image', 'name', 'brand', 'price', 'quantity', 'totalPrice'])}
+              rows={cart} checkboxSelection sx={{ overflow: 'scroll' }} />
             <Stack direction='row' justifyContent='space-between'>
               <Typography variant='h5' color='secondary'>TOTAL</Typography>
               <Typography variant='h5' color='secondary'>

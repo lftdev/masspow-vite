@@ -15,6 +15,7 @@ export const PRODUCT_PREVIEW_COMPONENT_STRINGS = {
   priceText: 'Price',
   stockText: 'Stock',
   addToCartBtn: 'Add to cart',
+  removeFromCartBtn: 'Remove from cart',
   qtyInputLabel: 'Quantity',
   detailsBtn: 'View details'
 }

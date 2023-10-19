@@ -12,6 +12,11 @@ export default function AddToCartForm (props) {
   const [cartBtnDisabled, setCartBtnDisabled] = useState(true)
   const [productQuantity, setProductQuantity] = useState(0)
 
+  const SUBMIT_BTN_TEXT =
+  productAdded
+    ? PRODUCT_PREVIEW_COMPONENT_STRINGS.removeFromCartBtn
+    : PRODUCT_PREVIEW_COMPONENT_STRINGS.addToCartBtn
+
   function handleQtyInput (event) {
     const value = event.target.value
     const amount = value === '' ? 0 : parseInt(value)
@@ -20,11 +25,19 @@ export default function AddToCartForm (props) {
     setCartBtnDisabled(isInvalid)
   }
 
-  function addToCart (event) {
-    event.preventDefault()
+  function addToCart () {
     setCart(prev => [...prev, { ...product, quantity: productQuantity, totalPrice: product.price * productQuantity }])
-    setCartBtnDisabled(true)
     setProductAdded(true)
+  }
+
+  function removeFromCart () {
+    setCart(prev => prev.filter(item => item.id !== product.id))
+    setProductAdded(false)
+  }
+
+  function handleSubmit (event) {
+    event.preventDefault()
+    productAdded ? removeFromCart() : addToCart()
   }
 
   return (
@@ -33,9 +46,9 @@ export default function AddToCartForm (props) {
         <Typography variant='h6' component='span'>{PRODUCT_PREVIEW_COMPONENT_STRINGS.priceText}: ${product.price}</Typography>
         <Typography variant='h6' component='span'>{PRODUCT_PREVIEW_COMPONENT_STRINGS.stockText}: {product.stock}</Typography>
       </Stack>
-      <form style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 10 }} onSubmit={addToCart}>
-        <Button type='submit' title={`${PRODUCT_PREVIEW_COMPONENT_STRINGS.addToCartBtn} ${product.name}`} disabled={cartBtnDisabled || productAdded} startIcon={HEADER_ICONS.cart} variant='contained' sx={{ maxWidth: '50%' }}>
-          {PRODUCT_PREVIEW_COMPONENT_STRINGS.addToCartBtn}
+      <form style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 10 }} onSubmit={handleSubmit}>
+        <Button type='submit' title={`${SUBMIT_BTN_TEXT} ${product.name}`} disabled={!productAdded && cartBtnDisabled} startIcon={HEADER_ICONS.cart} variant='contained' sx={{ maxWidth: '50%' }}>
+          {SUBMIT_BTN_TEXT}
         </Button>
         <TextField type='number' required sx={{ maxWidth: '50%' }} onInput={handleQtyInput} label={PRODUCT_PREVIEW_COMPONENT_STRINGS.qtyInputLabel} placeholder='2' disabled={productAdded} />
       </form>
