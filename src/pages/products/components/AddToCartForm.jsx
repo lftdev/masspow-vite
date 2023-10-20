@@ -6,7 +6,7 @@ import { CartContext } from '../../../contexts/cart-context'
 
 export default function AddToCartForm (props) {
   const { product } = props
-  const { cart, setCart } = useContext(CartContext)
+  const { cart, addProduct, removeProduct } = useContext(CartContext)
 
   const [productAdded, setProductAdded] = useState(cart.some(item => item.id === product.id))
   const [cartBtnDisabled, setCartBtnDisabled] = useState(true)
@@ -26,12 +26,12 @@ export default function AddToCartForm (props) {
   }
 
   function addToCart () {
-    setCart(prev => [...prev, { ...product, quantity: productQuantity, totalPrice: product.price * productQuantity }])
+    addProduct(product, productQuantity)
     setProductAdded(true)
   }
 
   function removeFromCart () {
-    setCart(prev => prev.filter(item => item.id !== product.id))
+    removeProduct(product.id)
     setProductAdded(false)
   }
 
