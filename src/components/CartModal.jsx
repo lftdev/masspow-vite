@@ -45,7 +45,7 @@ export default function CartModal (props) {
             <Stack direction='row' justifyContent='space-between'>
               <Typography variant='h5' color='secondary'>TOTAL</Typography>
               <Typography variant='h5' color='secondary'>
-                ${cart.reduce((result, { price, quantity }) => result + price * quantity, 0)}
+                ${cart.reduce((result, { totalPrice }) => result + totalPrice, 0)}
               </Typography>
             </Stack>
           </>

@@ -1,12 +1,16 @@
-import { Divider, Link, Stack, Typography, useMediaQuery } from '@mui/material'
+import { Avatar, Link, Stack, Typography, useMediaQuery } from '@mui/material'
+import { useContext } from 'react'
 import { Link as RLink } from 'react-router-dom'
 import { APP_NAME, LAYOUT_FOOTER_ATTRIBUTION } from '../constants/strings'
+import { AuthContext } from '../contexts/auth-context'
 import CartButton from './CartButton'
 import NavigationMenu from './NavigationMenu'
 import { LOGO_ICON, MAIN_NAV_ICONS } from './SVGIcons'
 
 export default function Layout (props) {
   const { children } = props
+  const { user } = useContext(AuthContext)
+
   const lgScreen = useMediaQuery('(min-width:768px)')
 
   const navItems = ['home', 'products', 'blog', 'about']
@@ -24,13 +28,13 @@ export default function Layout (props) {
           {lgScreen
             ? <>
                 <NavigationMenu navItems={navItems} />
-                <Divider orientation='vertical' flexItem />
                 <CartButton />
+                <Avatar alt='Remy Sharp'>{user.displayName[0]}</Avatar>
               </>
             : <>
                 <CartButton />
-                <Divider orientation='vertical' flexItem />
                 <NavigationMenu navItems={navItems} />
+                <Avatar alt='Remy Sharp'>{user?.displayName[0]}</Avatar>
               </>}
         </Stack>
       </Stack>
