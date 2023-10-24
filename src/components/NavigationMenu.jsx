@@ -1,12 +1,12 @@
 import { Drawer, IconButton, List, ListItem, ListItemButton, ListItemIcon, useMediaQuery } from '@mui/material'
-import { HEADER_ICONS } from './SVGIcons'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { HEADER_ICONS } from './SVGIcons'
 
 export default function NavigationMenu (props) {
   const { navItems } = props
   const [menuOpen, setMenuOpen] = useState(false)
-  const lgScreen = useMediaQuery('(min-width:768px)')
+  const lgScreen = useMediaQuery('(min-width:910px)')
 
   const closeMenu = () => setMenuOpen(false)
 

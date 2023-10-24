@@ -13,9 +13,7 @@ export default function AuthPage () {
     auth.useDeviceLanguage()
 
     signInWithPopup(auth, provider)
-      .then(result => {
-        setUser(result.user)
-      }).catch(error => {
+      .then(result => setUser(result.user)).catch(error => {
         console.error('Error occurred while signing in.', error.code, error.message)
         // The AuthCredential type that was used.
         GoogleAuthProvider.credentialFromError(error)

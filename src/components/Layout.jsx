@@ -1,17 +1,13 @@
-import { Avatar, Link, Stack, Typography, useMediaQuery } from '@mui/material'
-import { useContext } from 'react'
+import { Link, Stack, Typography } from '@mui/material'
 import { Link as RLink } from 'react-router-dom'
 import { APP_NAME, LAYOUT_FOOTER_ATTRIBUTION } from '../constants/strings'
-import { AuthContext } from '../contexts/auth-context'
+import AuthButton from './AuthButton'
 import CartButton from './CartButton'
 import NavigationMenu from './NavigationMenu'
 import { LOGO_ICON, MAIN_NAV_ICONS } from './SVGIcons'
 
 export default function Layout (props) {
   const { children } = props
-  const { user } = useContext(AuthContext)
-
-  const lgScreen = useMediaQuery('(min-width:768px)')
 
   const navItems = ['home', 'products', 'blog', 'about']
     .map(name => ({
@@ -25,17 +21,11 @@ export default function Layout (props) {
       <Stack component='header' direction='row' justifyContent='space-between' alignItems='center' sx={{ position: 'fixed', top: 0, width: '100%', p: 3, backgroundColor: 'rgba(0,0,0,.4)' }}>
         <RLink to='/' title={APP_NAME}>{LOGO_ICON()}</RLink>
         <Stack direction='row' component='span' alignItems='center'>
-          {lgScreen
-            ? <>
-                <NavigationMenu navItems={navItems} />
-                <CartButton />
-                <Avatar alt='Remy Sharp'>{user.displayName[0]}</Avatar>
-              </>
-            : <>
-                <CartButton />
-                <NavigationMenu navItems={navItems} />
-                <Avatar alt='Remy Sharp'>{user?.displayName[0]}</Avatar>
-              </>}
+          <>
+            <NavigationMenu navItems={navItems} />
+            <CartButton />
+            <AuthButton />
+          </>
         </Stack>
       </Stack>
       {children}
