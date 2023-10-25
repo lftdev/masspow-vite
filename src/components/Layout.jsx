@@ -1,13 +1,18 @@
 import { Link, Stack, Typography } from '@mui/material'
+import { useContext } from 'react'
 import { Link as RLink } from 'react-router-dom'
 import { APP_NAME, LAYOUT_FOOTER_ATTRIBUTION } from '../constants/strings'
+import { AuthContext } from '../contexts/auth-context'
 import AuthButton from './AuthButton'
 import CartButton from './CartButton'
 import NavigationMenu from './NavigationMenu'
 import { LOGO_ICON, MAIN_NAV_ICONS } from './SVGIcons'
+import UserMenu from './UserMenu'
 
 export default function Layout (props) {
   const { children } = props
+
+  const { user } = useContext(AuthContext)
 
   const navItems = ['home', 'products', 'blog', 'about']
     .map(name => ({
@@ -24,7 +29,7 @@ export default function Layout (props) {
           <>
             <NavigationMenu navItems={navItems} />
             <CartButton />
-            <AuthButton />
+            {user != null ? <UserMenu /> : <AuthButton />}
           </>
         </Stack>
       </Stack>
