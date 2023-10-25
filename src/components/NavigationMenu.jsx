@@ -12,10 +12,10 @@ export default function NavigationMenu (props) {
 
   const list = navItems.map((item, index) => (
     <ListItem key={index}>
-      <ListItemIcon sx={{ width: 24 }}>
-        {item.icon}
-      </ListItemIcon>
       <ListItemButton to={item.href} component={Link} onClick={closeMenu}>
+        <ListItemIcon sx={{ width: 24 }}>
+          {item.icon}
+        </ListItemIcon>
         {item.name.toUpperCase()}
       </ListItemButton>
     </ListItem>
